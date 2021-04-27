@@ -139,7 +139,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Letter.cpp" />
+    <ClCompile Include="Overnight.cpp" />
+    <ClCompile Include="Parcels.cpp" />
+    <ClCompile Include="Postcard.cpp" />
     <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="parcels.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Letter.h" />
+    <ClInclude Include="Overnight.h" />
+    <ClInclude Include="Parcels.h" />
+    <ClInclude Include="Postcard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
