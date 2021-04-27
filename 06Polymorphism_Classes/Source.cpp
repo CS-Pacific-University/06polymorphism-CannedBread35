@@ -113,10 +113,12 @@ int main() {
         initialID);
       if (bIsValidTID) { // ADDING RUSH SETTING
         cout << "Added Rush for $";
-        apcParcelsObjs[initialID - 1]->addRush();
+        
         eatCost = (apcParcelsObjs[initialID - 1]->getCost());
+     
         cout << apcParcelsObjs[initialID - 1]->getRushExpense(eatCost);
         cout << "\n";
+        apcParcelsObjs[initialID - 1]->addRush();
         apcParcelsObjs[initialID - 1]->print(cout); // Create a whole new print function, that takes into account the format syntax of rushing and adding insurance
       }
     }

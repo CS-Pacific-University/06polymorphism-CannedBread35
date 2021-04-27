@@ -60,12 +60,13 @@ bool Parcels::read(istream& rcIn) {
 void Parcels::print(ostream& rcOut) {
 	rcOut << "TID: " << mTrackingNumb << "  From: " << mFromAddress
 				<< "\tTo: " << mToAddress;
+	if (bInsured) {
+		rcOut << "\tINSURED\t";
+	}
 	if (bRush) {
 		rcOut << "\tRUSH";
 	}
-	if (bInsured) {
-		rcOut << "\tINSURED";
-	}
+	
 }
 
 //***************************************************************************
