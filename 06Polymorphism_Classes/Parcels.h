@@ -2,11 +2,12 @@
 //***************************************************************************
 // File name:		Parcels.h
 // Author:			Taylor Isaac
-// Date:				4/22/2021
+// Date:				4/27/2021
 // Class:				CS 250
 // Assignment:  06Polymorphism_Classes
 // Purpose:			Demonstrate the Parcels class
 //***************************************************************************
+
 #include <string>
 #include <iostream>
 
@@ -26,12 +27,12 @@ public:
 
 	virtual double getCost () = 0; 
 	virtual int getDaysForDelivery() = 0;
-	virtual double getInsuranceExpense (double) const = 0; // We include the double for the sake of calculating the overall current cost of Overnight insurance cost
+	virtual double getInsuranceExpense (double) const = 0;
 	virtual double getRushExpense(double) const = 0;
 
-	
 	void addInsurance();
 	void addRush();
+
 private:
 	string mTypeOfParcel;
 	int mTrackingNumb;
@@ -45,22 +46,18 @@ private:
 	bool bRush;
 };
 
-// *Left off with the implementation of adding rush to a parcel
-// Left off with these questions down below.
-// *Also left off with feeling the need to fix and make insuranceExpense a 
-//  parent's private data member variable
 // QUESTIONS:
-// 0. 
-// 0. Should I make the insuranceExpenseOrMultiplier ig a member variable for 
-//		the parent class? And then have set functions for each unique derived
-//		class? Passing in each unique double insurance expense to set it for 
-//		each unique member variable?
-// 1. Output error with "INSURED" on line below when you are saying that a 
-//		parcel has been INSURED!
-// 2. How to correctly delete a specific pointer from the array of pointers,
+// 1. How to correctly delete a specific pointer from the array of pointers,
 //		and have it where the next time the parcels are printed, that specific
 //		parcel disappears?
+// 2. Should I make the rushing expense/insurance expenses parent private
+//		data member variables? Right now, I have each derived class its own
+//		unique value for those two variables.
 
+// TO DO (minor issues):
+// 1. Work on less repeated code for split dif paths in source.cpp
+// 2. Close the file after you've opened it and have already read in all the
+//		data
 
 
 

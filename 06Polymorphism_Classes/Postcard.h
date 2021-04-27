@@ -2,11 +2,12 @@
 //***************************************************************************
 // File name:		Postcard.h
 // Author:			Taylor Isaac
-// Date:				4/22/2021
+// Date:				4/27/2021
 // Class:				CS 250
 // Assignment:  06Polymorphism_Classes
 // Purpose:			Demonstrate the Postcard class
 //***************************************************************************
+
 #include <string>
 #include <iostream>
 #include "Parcels.h"
@@ -16,10 +17,10 @@ using namespace std;
 class Postcard : public Parcels {
 	public:
 		Postcard ();
+
 		virtual bool read(istream&);
 		virtual void print(ostream&);
 
-		// These are pure virtual functions
 		virtual double getCost(); 
 		virtual int getDaysForDelivery();
 		virtual double getInsuranceExpense(double) const;

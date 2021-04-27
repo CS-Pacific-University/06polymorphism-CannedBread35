@@ -1,10 +1,10 @@
 //***************************************************************************
 // File name:	 Parcels.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/22/2021
+// Date:		   4/27/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
-// Purpose:		 Demonstrate Inheritance
+// Purpose:		 Demonstrate Inheritance using a Parcel
 //***************************************************************************
 
 #include "Parcels.h"
@@ -35,6 +35,17 @@ Parcels::Parcels() {
 	bInsured = false;
 	bRush = false;
 }
+
+//***************************************************************************
+// Function:	  read
+//
+// Description:	reads in specified data (the derived classes will use this 
+//							exact function, but add more special things to read in
+//
+// Parameters:	rcIn - designated input option
+//
+// Returned:		bool - determines whether or not data was read in
+//***************************************************************************
 
 bool Parcels::read(istream& rcIn) {
 	bool bTheTruth = false;
@@ -72,13 +83,15 @@ void Parcels::print(ostream& rcOut) {
 //***************************************************************************
 // Function:    getUserTID
 //
-// Description: gets the user input's desired TID
+// Description: gets the user input's desired TID. This function checks
+//							to see if any of the TID's in the array of pointers matches 
+//							up with what the user enters in 
 // 
 // Parameters:  index - actual size of array of pointers
 // 
 //							apcArrayOfParcels - the array of pointers passed in
 //							
-//							userTID - passes in the user's initial TID 
+//							userTID - passes in the user's inputted initial TID 
 // 
 // Returned:    bool - returns a boolean variable if valid TID
 //***************************************************************************
@@ -97,11 +110,12 @@ bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
 //***************************************************************************
 // Function:    getInsuranceTruth
 //
-// Description: gets the returned value of whether or not there is insurance
+// Description: gets the returned value of the current state of being insured
+//							or not
 // 
 // Parameters:  none
 // 
-// Returned:    bool - returns a boolean variable if valid TID
+// Returned:    bool - returns a boolean variable of insurance
 //***************************************************************************
 
 bool Parcels::getInsuranceTruth() {
@@ -116,7 +130,8 @@ bool Parcels::getInsuranceTruth() {
 // 
 // Parameters:  none
 // 
-// Returned:    bool - returns a boolean variable if valid TID
+// Returned:    bool - returns a boolean variable of whether or not its
+//										 rushed
 //***************************************************************************
 
 bool Parcels::getRushTruth() {
@@ -126,15 +141,15 @@ bool Parcels::getRushTruth() {
 //***************************************************************************
 // Function:		addInsurance
 //
-// Description:	sets true the insurance to the unique type of parcel
+// Description:	sets true the state of being insured for the unique type of 
+//							parcel
 //
-// Parameters:	the current state of insurance for the parent's private data
-//							member variable of whether or not it is being insured
+// Parameters:	none
 // 
-// Returned:		double - the rushing expense
+// Returned:		none
 //***************************************************************************
 
-void Parcels::addInsurance() { // Passing in the 
+void Parcels::addInsurance() {
 	bInsured = true;
 }
 
@@ -143,10 +158,9 @@ void Parcels::addInsurance() { // Passing in the
 //
 // Description:	sets true the unique parcel's state of being rushed 
 //
-// Parameters:	the current state of being rushed for the parent's private 
-//							data member variable of whether or not it is being insured
+// Parameters:	none
 // 
-// Returned:		double - the rushing expense
+// Returned:		none
 //***************************************************************************
 
 void Parcels::addRush() {

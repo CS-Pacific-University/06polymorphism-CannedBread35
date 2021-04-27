@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Letter.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/22/2021
+// Date:		   4/27/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Letter and its pertinence to inheritance
@@ -32,11 +32,12 @@ Letter::Letter() : Parcels(), insuranceFlatRate(0.45),
 //***************************************************************************
 // Function:	  read
 //
-// Description:	read in the name and SSN
+// Description:	utilizes the properties of inheritance, (from its parent 
+//							function) reading in data
 //
 // Parameters:	rcIn - designated input option
 //
-// Returned:		None
+// Returned:		bool - determines whether or not data was read in
 //***************************************************************************
 
 bool Letter::read(istream& rcIn) {
@@ -118,7 +119,7 @@ int Letter::getDaysForDelivery() {
 	}
 	if (Parcels::getRushTruth()) {
 		if (daysForDelivery > 1) {
-			daysForDelivery -= 1; // IS THIS LOGIC CORRECT?
+			daysForDelivery -= 1;
 		}
 	}
 	return daysForDelivery;

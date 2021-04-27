@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:		Source.cpp
 // Author:			Taylor Isaac
-// Date:				4/20/2021
+// Date:				4/27/2021
 // Class:				CS 250
 // Assignment:  06Polymorphism
 // Purpose:			Demonstrate the mail class
@@ -19,12 +19,12 @@ const int OPTION_TWO = 2;
 const int OPTION_THREE = 3;
 const int OPTION_FOUR = 4;
 const int OPTION_FIVE = 5;
+const string INPUT_FILE = "parcels.txt";
 int printOptionMenuAndGetChoice();
 void openFileForRead(ifstream& rInfile);
 void closeFileForRead(ifstream& rInfile);
 void printAllParcels(int index, Parcels* apcParcelsObjs[]);
 int obtainInitialTID();
-//bool getValidUserTID(int index, Parcels* apcArrayOfParcels[]);
 using namespace std;
 
 //***************************************************************************
@@ -51,28 +51,29 @@ int main() {
   bool bIsValidTID = false;
   double eatCost = 0;
   Parcels* apcParcelsObjs[MAX_NUMB_ARRAY] = { nullptr };
-  ifstream inFile;
+  ifstream cInFile;
 
-  openFileForRead(inFile);
+  openFileForRead(cInFile);
   cout << "Mail Simulator!\n";
   // Populating array of pointers here down below using switch statement
-  while (inFile >> parcelEat) {
+  while (cInFile >> parcelEat) {
     switch (parcelEat) {
     case POSTCARD_SYMBOL: apcParcelsObjs[index] = new Postcard();
-      apcParcelsObjs[index]->read(inFile);
+      apcParcelsObjs[index]->read(cInFile);
       ++index;
       break;
     case LETTER_SYMBOL:  apcParcelsObjs[index] = new Letter();
-      apcParcelsObjs[index]->read(inFile);
+      apcParcelsObjs[index]->read(cInFile);
       ++index;
       break;
     case OVERNIGHT_SYMBOL: apcParcelsObjs[index] = new Overnight();
-      apcParcelsObjs[index]->read(inFile);
+      apcParcelsObjs[index]->read(cInFile);
       ++index;
       break;
     default: break;
     }
   }
+  // closeFileForRead(cInfile);
   while (OPTION_FIVE != userChoice) {
     userChoice = printOptionMenuAndGetChoice();
     if (OPTION_ONE == userChoice) {
@@ -99,10 +100,10 @@ int main() {
         initialID);
       if (bIsValidTID) { // INSURANCE SETTING
         cout << "Added Insurance for $"; 
-        apcParcelsObjs[initialID - 1]->addInsurance(); // Needing to work on the functions for adding insurance and rush
+        apcParcelsObjs[initialID - 1]->addInsurance();
         eatCost = (apcParcelsObjs[initialID - 1]->getCost());
         cout << apcParcelsObjs[initialID - 1]->getInsuranceExpense(eatCost); 
-        // First round is the letter. Implement other functions into the other 2 unique parcels
+      
         cout << "\n";
         apcParcelsObjs[initialID - 1]->print(cout);
       }
@@ -111,7 +112,7 @@ int main() {
       initialID = obtainInitialTID();
       bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
         initialID);
-      if (bIsValidTID) { // ADDING RUSH SETTING
+      if (bIsValidTID) { // RUSH SETTING
         cout << "Added Rush for $";
         
         eatCost = (apcParcelsObjs[initialID - 1]->getCost());
@@ -119,26 +120,23 @@ int main() {
         cout << apcParcelsObjs[initialID - 1]->getRushExpense(eatCost);
         cout << "\n";
         apcParcelsObjs[initialID - 1]->addRush();
-        apcParcelsObjs[initialID - 1]->print(cout); // Create a whole new print function, that takes into account the format syntax of rushing and adding insurance
+        apcParcelsObjs[initialID - 1]->print(cout);
       }
     }
   }
-
-
-
-   // giant while loop end
   return EXIT_SUCCESS;
 }
 
 //***************************************************************************
-// Function:		printOptionMenu
+// Function:		printOptionMenuAndGetChoice
 //
-// Description:	Outputs desired description or criterium with correct number
-//							of specified border characters underneath it 
+// Description:	Outputs desired description or criterium with the option of 
+//              allowing the user to input a choice
 //
 // Parameters:	None
 // 
-// Returned:		None
+// Returned:		int - the returned valid choice as a number displayed from
+//                    menu
 //***************************************************************************
 
 int printOptionMenuAndGetChoice() {
@@ -167,7 +165,7 @@ int printOptionMenuAndGetChoice() {
 //***************************************************************************
 
 void openFileForRead(ifstream& rInfile) {
-  const string INPUT_FILE = "parcels.txt";
+ // const string INPUT_FILE = "parcels.txt";
   rInfile.open(INPUT_FILE);
   if (!rInfile.is_open()) {
     cout << "Error opening file.";
@@ -186,6 +184,7 @@ void openFileForRead(ifstream& rInfile) {
 //***************************************************************************
 
 void closeFileForRead(ifstream& rInfile) {
+  
   rInfile.close();
 }
 
@@ -195,7 +194,8 @@ void closeFileForRead(ifstream& rInfile) {
 // Description: when user chooses option 1, it prints all associated parcels
 // 
 // Parameters:  index - the correct amount of positions associated with the 
-//                      array of pointers 
+//                      array of pointers
+//  
 //              *apcArrayOfParcels[] - allows an array of pointers of class 
 //                                     Parcels to be passed in
 //
@@ -216,7 +216,7 @@ void printAllParcels(int index, Parcels *apcArrayOfParcels[]) {
 // 
 // Parameters:  None
 //
-// Returned:    None
+// Returned:    int - the user's inputted initial tracking ID number
 //***************************************************************************
 
 int obtainInitialTID() {

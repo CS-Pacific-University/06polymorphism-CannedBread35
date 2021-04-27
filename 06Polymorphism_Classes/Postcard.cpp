@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Postcard.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/22/2021
+// Date:		   4/27/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Inheritance
@@ -18,7 +18,7 @@
 // Constructor:	Postcard
 //
 // Description:	Provides initialization for the appropiate data member 
-//              variables of a parcel. This should set up inheritance for 
+//              variables of a postcard. This should utilize inheritance for 
 //							this class's derived classes
 //
 // Parameters:	None
@@ -56,7 +56,7 @@ bool Postcard::read(istream& rcIn) {
 // Description:	prints an object's correct associated information
 //
 // Parameters:	rcOut - one may specift whether to the console or to an 
-//												output file
+//											output file
 // 
 // Returned:		none
 //***************************************************************************
@@ -74,7 +74,7 @@ void Postcard::print(ostream& rcOut) {
 //
 // Parameters:	none
 // 
-// Returned:		double - the total running cost
+// Returned:		double - the total running cost for the postcard
 //***************************************************************************
 
 double Postcard::getCost() {
@@ -101,7 +101,7 @@ double Postcard::getCost() {
 // Parameters:	none
 // 
 // Returned:		double - the total running number of days required for
-//                       delivery
+//                       delivery of a postcard
 //***************************************************************************
 
 int Postcard::getDaysForDelivery() {
@@ -121,7 +121,7 @@ int Postcard::getDaysForDelivery() {
   }
   if (Parcels::getRushTruth()) {
     if (daysForDelivery > 1) {
-      daysForDelivery -= 1; // IS THIS LOGIC CORRECT?
+      daysForDelivery -= 1;
     }
   }
   return daysForDelivery;
