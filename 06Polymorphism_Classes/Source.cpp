@@ -56,6 +56,7 @@ int main() {
   ifstream cInFile;
 
   openFileForRead(cInFile);
+
   cout << "Mail Simulator!\n";
   while (cInFile >> parcelEat) {
     switch (parcelEat) {
