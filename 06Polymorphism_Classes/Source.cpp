@@ -6,6 +6,7 @@
 // Assignment:  06Polymorphism
 // Purpose:			Demonstrate the mail class
 //***************************************************************************
+
 #include "Parcels.h"
 #include "Letter.h"
 #include "Overnight.h"
@@ -14,6 +15,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
+#include <vld.h>
 const int OPTION_ONE = 1;
 const int OPTION_TWO = 2;
 const int OPTION_THREE = 3;
@@ -55,7 +57,7 @@ int main() {
 
   openFileForRead(cInFile);
   cout << "Mail Simulator!\n";
-  // Populating array of pointers here down below using switch statement
+  
   while (cInFile >> parcelEat) {
     switch (parcelEat) {
     case POSTCARD_SYMBOL: apcParcelsObjs[index] = new Postcard();
@@ -73,7 +75,7 @@ int main() {
     default: break;
     }
   }
-  // closeFileForRead(cInfile);
+
   while (OPTION_FIVE != userChoice) {
     userChoice = printOptionMenuAndGetChoice();
     if (OPTION_ONE == userChoice) {
@@ -81,49 +83,59 @@ int main() {
     }
 
     else if (OPTION_FOUR == userChoice) {
-      initialID = obtainInitialTID();
-      bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
-        initialID);
-      if (bIsValidTID) { // DELIVERY SETTING
-        cout << "Delivered!\n";
-        cout << apcParcelsObjs[initialID - 1]->getDaysForDelivery();
-        cout << " Day, " << "$" << apcParcelsObjs[initialID - 1]->getCost();
-        cout << "\n";
-        apcParcelsObjs[initialID - 1]->print(cout);
-        /*delete apcParcelsObjs[initialID - 1];
-        apcParcelsObjs[initialID - 1] = { nullptr };*/
+      
+        initialID = obtainInitialTID();
+        if (apcParcelsObjs[initialID - 1] != nullptr) {
+        bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
+          initialID);
+        if (bIsValidTID) { 
+          cout << "Delivered!\n";
+          cout << apcParcelsObjs[initialID - 1]->getDaysForDelivery();
+          cout << " Day, " << "$" << apcParcelsObjs[initialID - 1]->getCost();
+          cout << "\n";
+          apcParcelsObjs[initialID - 1]->print(cout);
+          delete apcParcelsObjs[initialID - 1];
+          apcParcelsObjs[initialID - 1] = { nullptr };
+        }
       }
     } 
     else if (OPTION_TWO == userChoice) {
       initialID = obtainInitialTID();
-      bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
-        initialID);
-      if (bIsValidTID) { // INSURANCE SETTING
-        cout << "Added Insurance for $"; 
-        apcParcelsObjs[initialID - 1]->addInsurance();
-        eatCost = (apcParcelsObjs[initialID - 1]->getCost());
-        cout << apcParcelsObjs[initialID - 1]->getInsuranceExpense(eatCost); 
-      
-        cout << "\n";
-        apcParcelsObjs[initialID - 1]->print(cout);
+      if (apcParcelsObjs[initialID - 1] != nullptr) {
+        bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
+          initialID);
+        if (bIsValidTID) {
+          cout << "Added Insurance for $";
+          apcParcelsObjs[initialID - 1]->addInsurance();
+          eatCost = (apcParcelsObjs[initialID - 1]->getCost());
+          cout << apcParcelsObjs[initialID - 1]->getInsuranceExpense(eatCost);
+
+          cout << "\n";
+          apcParcelsObjs[initialID - 1]->print(cout);
+        }
       }
     }
     else if (OPTION_THREE == userChoice) {
       initialID = obtainInitialTID();
-      bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
-        initialID);
-      if (bIsValidTID) { // RUSH SETTING
-        cout << "Added Rush for $";
-        
-        eatCost = (apcParcelsObjs[initialID - 1]->getCost());
-     
-        cout << apcParcelsObjs[initialID - 1]->getRushExpense(eatCost);
-        cout << "\n";
-        apcParcelsObjs[initialID - 1]->addRush();
-        apcParcelsObjs[initialID - 1]->print(cout);
+      if (apcParcelsObjs[initialID - 1] != nullptr) {
+        bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
+          initialID);
+        if (bIsValidTID) { 
+          cout << "Added Rush for $";
+
+          eatCost = (apcParcelsObjs[initialID - 1]->getCost());
+          cout << apcParcelsObjs[initialID - 1]->getRushExpense(eatCost);
+          cout << "\n";
+          apcParcelsObjs[initialID - 1]->addRush();
+          apcParcelsObjs[initialID - 1]->print(cout);
+        }
       }
     }
   }
+  for (int start = 0; start < MAX_NUMB_ARRAY; start++) {
+    delete (apcParcelsObjs[start]);
+  }
+  closeFileForRead(cInFile);
   return EXIT_SUCCESS;
 }
 
@@ -184,7 +196,6 @@ void openFileForRead(ifstream& rInfile) {
 //***************************************************************************
 
 void closeFileForRead(ifstream& rInfile) {
-  
   rInfile.close();
 }
 
@@ -205,7 +216,9 @@ void closeFileForRead(ifstream& rInfile) {
 void printAllParcels(int index, Parcels *apcArrayOfParcels[]) {
   cout << "\n";
   for (int start = 0; start < index; start++) {
-    apcArrayOfParcels[start]->print(cout);
+    if (apcArrayOfParcels[start] != nullptr) {
+        apcArrayOfParcels[start]->print(cout);
+    }
   }
 }
 

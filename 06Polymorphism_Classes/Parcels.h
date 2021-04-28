@@ -46,43 +46,5 @@ private:
 	bool bRush;
 };
 
-// QUESTIONS:
-// 1. How to correctly delete a specific pointer from the array of pointers,
-//		and have it where the next time the parcels are printed, that specific
-//		parcel disappears?
-// 2. Should I make the rushing expense/insurance expenses parent private
-//		data member variables? Right now, I have each derived class its own
-//		unique value for those two variables.
-
 // TO DO (minor issues):
 // 1. Work on less repeated code for split dif paths in source.cpp
-// 2. Close the file after you've opened it and have already read in all the
-//		data
-
-
-
-
-
-
-
-
-
-// THINGS TO REMEMBER: 
-// 1. this pure virtual function, here, it CANNOT be defined in the parent 
-// class, but in its derived classes, MUST implement
-// 2. (if parent has a pure virtual function need ASAP to implement on 
-//     child(s))
-// 3. Add pure virtual if it's rquired the derived class needs to override 
-// the function. For example, getCost, Parcel, you don't know what type, we 
-// don't know exact cost , we need to know what type of parcel to calculate 
-// unique cost you can't just get the payCost of the overall class Employee 
-// because we doN't know if they're salaried or hourly. If we create a child
-// of the employee we have to have a derived function to know how the unique 
-// employee gets payed. REQUIRED OVERRIDEN
-
-// 4. Add virtual, employee does know what to do, BUT child might want to 
-// change print and read, the original parent function for reading in knows 
-// how to read, but the children want to have the option a more specialized 
-// function
-
-

@@ -34,6 +34,8 @@ Parcels::Parcels() {
 	mDayMinimumOfTravel = -1;
 	bInsured = false;
 	bRush = false;
+	// insuranceCostOrMultiplier = -1;
+	// rushCostOrMultiplier = -1;
 }
 
 //***************************************************************************
@@ -100,7 +102,8 @@ bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
 															int userTID) {
 	bool validUserTID = false;
 	for (int start = 0; start < index; start++) {
-		if (apcArrayOfParcels[start]->mTrackingNumb == userTID) {
+		if (apcArrayOfParcels[start] != nullptr && 
+				apcArrayOfParcels[start]->mTrackingNumb == userTID) {
 			validUserTID = true;
 		}
 	}
@@ -118,7 +121,7 @@ bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
 // Returned:    bool - returns a boolean variable of insurance
 //***************************************************************************
 
-bool Parcels::getInsuranceTruth() {
+	bool Parcels::getInsuranceTruth() {
 	return bInsured;
 }
 

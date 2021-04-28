@@ -15,7 +15,6 @@ using namespace std;
 class Overnight : public Parcels {
 	public:
 		Overnight();
-
 		int getVol() const { return mVol; }
 
 		virtual bool read(istream&);

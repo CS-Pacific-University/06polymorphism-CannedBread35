@@ -16,7 +16,6 @@ using namespace std;
 class Letter : public Parcels {
 	public:
 		Letter ();
-
 		virtual bool read (istream&);
 		virtual void print(ostream&);
 

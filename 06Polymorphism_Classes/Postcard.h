@@ -17,7 +17,6 @@ using namespace std;
 class Postcard : public Parcels {
 	public:
 		Postcard ();
-
 		virtual bool read(istream&);
 		virtual void print(ostream&);
 
