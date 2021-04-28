@@ -114,8 +114,8 @@ int Postcard::getDaysForDelivery() {
     daysForDelivery = 1;
   }
   else {
-    while (milesToTravel >= THRESHOLD) {
-      (milesToTravel - MILES_PER_DAY_CAN_TRAVEL);
+    while (milesToTravel > THRESHOLD) {
+      (milesToTravel -= MILES_PER_DAY_CAN_TRAVEL);
       daysForDelivery++;  
     }
   }

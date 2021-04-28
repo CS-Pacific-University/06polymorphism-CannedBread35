@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Parcels.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/23/2021
+// Date:		   4/28/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Inheritance
@@ -25,7 +25,7 @@
 // Returned:		none
 //***************************************************************************
 
-Overnight::Overnight() : Parcels(), mVol(-1), insuranceCostMultiplier(1.25),
+Overnight::Overnight() : Parcels(), mVol(-1), insuranceCostMultiplier(0.25),
 												 rushCostMultiplier(0.75) {
 
 }
@@ -78,8 +78,8 @@ void Overnight::print(ostream& rcOut) {
 //***************************************************************************
 
 double Overnight::getCost() {
-	const double insuranceCostMultiplier = 1.25;
-	const double rushMultiplier = 1.75;
+	const double INSURANCE_COST_MULTIPLIER = 1.25;
+	const double RUSH_MULTIPLIER = 1.75;
 	const int UPPER_BOUND_COST = 100;
 	double runningCost = 0;
 	if (getVol() > UPPER_BOUND_COST) {
@@ -88,11 +88,11 @@ double Overnight::getCost() {
 	if (getVol() <= UPPER_BOUND_COST) {
 		runningCost = 12;
 	}
-	if (Parcels::getInsuranceTruth()) {
-		runningCost *= insuranceCostMultiplier; 
+	if (Parcels::getInsuranceTruth()) { 
+		runningCost *= INSURANCE_COST_MULTIPLIER;
 	}
 	if (Parcels::getRushTruth()) {
-		runningCost *= rushMultiplier; // We get here at $20 *= 1.75
+		runningCost *= RUSH_MULTIPLIER; 
 	}
 	cout << fixed << setprecision(2);
 	return runningCost;
@@ -119,8 +119,8 @@ int Overnight::getDaysForDelivery() {
     daysForDelivery = 1;
   }
   else {
-      daysForDelivery += 2; // IS THIS CORRECT LOGIC?
-    }
+      daysForDelivery += 2; 
+   }
 	if (Parcels::getRushTruth()) {
 		daysForDelivery = 1;
 	}
@@ -140,7 +140,7 @@ int Overnight::getDaysForDelivery() {
 
 double Overnight::getInsuranceExpense(double currCost) const {
 	double actualInsuranceExpense = 0;
-	actualInsuranceExpense = (currCost * insuranceCostMultiplier);
+	actualInsuranceExpense = (currCost * insuranceCostMultiplier); 
 	return actualInsuranceExpense;
 }
 

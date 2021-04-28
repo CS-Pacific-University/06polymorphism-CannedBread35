@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Letter.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/27/2021
+// Date:		   4/28/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Letter and its pertinence to inheritance
@@ -105,6 +105,7 @@ double Letter::getCost() {
 
 int Letter::getDaysForDelivery() {
 	const int MILES_PER_DAY_CAN_TRAVEL = 100;
+	const int THRESHOLD = 0;
 	int milesToTravel = Parcels::getDistance();
 	int daysForDelivery = 0;
 
@@ -112,8 +113,8 @@ int Letter::getDaysForDelivery() {
 		daysForDelivery = 1;
 	}
 	else {
-		while (milesToTravel >= 0) {
-			(milesToTravel - MILES_PER_DAY_CAN_TRAVEL);
+		while (milesToTravel > THRESHOLD) {
+			(milesToTravel -= MILES_PER_DAY_CAN_TRAVEL);
 			daysForDelivery++;
 		}
 	}

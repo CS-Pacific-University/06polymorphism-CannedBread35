@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:		Source.cpp
 // Author:			Taylor Isaac
-// Date:				4/27/2021
+// Date:				4/28/2021
 // Class:				CS 250
 // Assignment:  06Polymorphism
 // Purpose:			Demonstrate the mail class
@@ -57,7 +57,6 @@ int main() {
 
   openFileForRead(cInFile);
   cout << "Mail Simulator!\n";
-  
   while (cInFile >> parcelEat) {
     switch (parcelEat) {
     case POSTCARD_SYMBOL: apcParcelsObjs[index] = new Postcard();
@@ -86,18 +85,19 @@ int main() {
       
         initialID = obtainInitialTID();
         if (apcParcelsObjs[initialID - 1] != nullptr) {
-        bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
-          initialID);
-        if (bIsValidTID) { 
-          cout << "Delivered!\n";
-          cout << apcParcelsObjs[initialID - 1]->getDaysForDelivery();
-          cout << " Day, " << "$" << apcParcelsObjs[initialID - 1]->getCost();
-          cout << "\n";
-          apcParcelsObjs[initialID - 1]->print(cout);
-          delete apcParcelsObjs[initialID - 1];
-          apcParcelsObjs[initialID - 1] = { nullptr };
-        }
-      }
+          bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
+            initialID);
+          if (bIsValidTID) { 
+            cout << "Delivered!\n";
+            cout << apcParcelsObjs[initialID - 1]->getDaysForDelivery();
+            cout << " Day, " << "$" 
+                 << apcParcelsObjs[initialID - 1]->getCost();
+            cout << "\n";
+            apcParcelsObjs[initialID - 1]->print(cout);
+            delete apcParcelsObjs[initialID - 1];
+            apcParcelsObjs[initialID - 1] = { nullptr };
+          }
+       }
     } 
     else if (OPTION_TWO == userChoice) {
       initialID = obtainInitialTID();
@@ -106,11 +106,13 @@ int main() {
           initialID);
         if (bIsValidTID) {
           cout << "Added Insurance for $";
-          apcParcelsObjs[initialID - 1]->addInsurance();
           eatCost = (apcParcelsObjs[initialID - 1]->getCost());
-          cout << apcParcelsObjs[initialID - 1]->getInsuranceExpense(eatCost);
+    
+          cout << apcParcelsObjs[initialID - 1]->
+                                                getInsuranceExpense(eatCost);
 
           cout << "\n";
+          apcParcelsObjs[initialID - 1]->addInsurance();
           apcParcelsObjs[initialID - 1]->print(cout);
         }
       }
@@ -122,7 +124,6 @@ int main() {
           initialID);
         if (bIsValidTID) { 
           cout << "Added Rush for $";
-
           eatCost = (apcParcelsObjs[initialID - 1]->getCost());
           cout << apcParcelsObjs[initialID - 1]->getRushExpense(eatCost);
           cout << "\n";
