@@ -26,8 +26,8 @@
 // Returned:		none
 //***************************************************************************
 
-Postcard::Postcard() : Parcels(), mMessage(""), insuranceFlatRate(0.15),
-                       rushCost(0.25) {
+Postcard::Postcard() : Parcels(), mMessage(""), mInsuranceFlatRate(0.15),
+                       mRushCost(0.25) {
 }
 
 //***************************************************************************
@@ -79,14 +79,12 @@ void Postcard::print(ostream& rcOut) {
 
 double Postcard::getCost() {
   double runningCost = 0.15;
-  const double insuranceCost = 0.15;
-  const double rushCost = 0.25;
- 
+
   if (Parcels::getRushTruth()) {
-    runningCost += rushCost;
+    runningCost += mRushCost;
   }
   if (Parcels::getInsuranceTruth()) {
-    runningCost += insuranceCost;
+    runningCost += mInsuranceFlatRate;
   }
   cout << fixed << setprecision(2);
   return runningCost;
@@ -140,7 +138,7 @@ int Postcard::getDaysForDelivery() {
 //***************************************************************************
 
 double Postcard::getInsuranceExpense(double currCost) const {
-  return insuranceFlatRate;
+  return mInsuranceFlatRate;
 }
 
 //***************************************************************************
@@ -155,5 +153,5 @@ double Postcard::getInsuranceExpense(double currCost) const {
 //***************************************************************************
 
 double Postcard::getRushExpense(double currCost) const {
-  return rushCost;
+  return mRushCost;
 }

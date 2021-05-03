@@ -27,6 +27,6 @@ class Postcard : public Parcels {
 
 	private:
 		string mMessage;
-		double insuranceFlatRate;
-		double rushCost;
+		double mInsuranceFlatRate;
+		double mRushCost;
 	};

@@ -24,7 +24,6 @@
 //***************************************************************************
 
 Parcels::Parcels() {
-	mTypeOfParcel = "";
 	mTrackingNumb = -1;
 	mToAddress = "";
 	mFromAddress ="";
@@ -32,8 +31,8 @@ Parcels::Parcels() {
 	mDistanceToTravel = -1;
 	mMilesPerDayCanTravel = -1;
 	mDayMinimumOfTravel = -1;
-	bInsured = false;
-	bRush = false;
+	mbInsured = false;
+	mbRush = false;
 }
 
 //***************************************************************************
@@ -71,10 +70,10 @@ bool Parcels::read(istream& rcIn) {
 void Parcels::print(ostream& rcOut) {
 	rcOut << "TID: " << mTrackingNumb << "\tFrom: " << mFromAddress
 				<< "\tTo: " << mToAddress;
-	if (bInsured) {
+	if (mbInsured) {
 		rcOut << "\tINSURED\t";
 	}
-	if (bRush) {
+	if (mbRush) {
 		rcOut << "\tRUSH";
 	}
 	
@@ -120,7 +119,7 @@ bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
 //***************************************************************************
 
 	bool Parcels::getInsuranceTruth() {
-	return bInsured;
+	return mbInsured;
 }
 
 //***************************************************************************
@@ -135,7 +134,7 @@ bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
 //***************************************************************************
 
 bool Parcels::getRushTruth() {
-	return bRush;
+	return mbRush;
 }
 
 //***************************************************************************
@@ -150,7 +149,7 @@ bool Parcels::getRushTruth() {
 //***************************************************************************
 
 void Parcels::addInsurance() {
-	bInsured = true;
+	mbInsured = true;
 }
 
 //***************************************************************************
@@ -164,5 +163,5 @@ void Parcels::addInsurance() {
 //***************************************************************************
 
 void Parcels::addRush() {
-	bRush = true;
+	mbRush = true;
 }

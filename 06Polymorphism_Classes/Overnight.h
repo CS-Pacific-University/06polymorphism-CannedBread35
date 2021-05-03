@@ -27,6 +27,6 @@ class Overnight : public Parcels {
 	
 	private:
 		int mVol;
-		double insuranceCostMultiplier;
-		double rushCostMultiplier;
+		double mInsuranceCostMultiplier;
+		double mRushCostMultiplier;
 	};

@@ -25,8 +25,8 @@
 // Returned:		none
 //***************************************************************************
 
-Letter::Letter() : Parcels(), insuranceFlatRate(0.45), 
-									 rushCostMultiplier(1.1) {
+Letter::Letter() : Parcels(), mInsuranceFlatRate(0.45), 
+									 mRushCostMultiplier(1.1) {
 }
 
 //***************************************************************************
@@ -76,16 +76,13 @@ void Letter::print(ostream& rcOut) {
 //***************************************************************************
 
 double Letter::getCost() {
-	const double insuranceCost = 0.45;
-	double runningCost = (getWeightOz() * 0.45);
-	const double rushMultiplier = 1.1;
-	
+	double runningCost = (getWeightOz() * mInsuranceFlatRate);
 	if (Parcels::getInsuranceTruth()) {
-		runningCost += insuranceCost;
+		runningCost += mInsuranceFlatRate;
 	}
 
 	if (Parcels::getRushTruth()) {
-		runningCost *= rushMultiplier;
+		runningCost *= mRushCostMultiplier;
 	}
 	cout << fixed << setprecision(2);
 	return runningCost;
@@ -138,7 +135,7 @@ int Letter::getDaysForDelivery() {
 //***************************************************************************
 
 double Letter::getInsuranceExpense(double currCost) const {
-	return insuranceFlatRate;
+	return mInsuranceFlatRate;
 }
 
 //***************************************************************************
@@ -154,6 +151,6 @@ double Letter::getInsuranceExpense(double currCost) const {
 
 double Letter::getRushExpense(double currCost) const {
 	double actualRushExpense = 0;
-	actualRushExpense = (currCost * rushCostMultiplier);
+	actualRushExpense = (currCost * mRushCostMultiplier);
 	return actualRushExpense;
 }

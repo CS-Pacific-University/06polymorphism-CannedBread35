@@ -30,11 +30,10 @@ public:
 	virtual double getInsuranceExpense (double) const = 0;
 	virtual double getRushExpense (double) const = 0;
 
-	void addInsurance();
-	void addRush();
+	void addInsurance ();
+	void addRush ();
 
 private:
-	string mTypeOfParcel;
 	int mTrackingNumb;
 	string mToAddress;
 	string mFromAddress;
@@ -42,9 +41,6 @@ private:
 	int mDistanceToTravel;
 	int mMilesPerDayCanTravel; 
 	int mDayMinimumOfTravel; 
-	bool bInsured;
-	bool bRush;
+	bool mbInsured;
+	bool mbRush;
 };
-
-// TO DO (minor issues):
-// 1. Work on less repeated code for split dif paths in source.cpp

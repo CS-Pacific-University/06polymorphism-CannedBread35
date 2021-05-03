@@ -25,6 +25,6 @@ class Letter : public Parcels {
 		virtual double getRushExpense (double) const;
 
 private:
-	double insuranceFlatRate;
-	double rushCostMultiplier;
+	double mInsuranceFlatRate;
+	double mRushCostMultiplier;
 };

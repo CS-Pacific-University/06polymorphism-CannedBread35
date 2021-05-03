@@ -25,8 +25,8 @@
 // Returned:		none
 //***************************************************************************
 
-Overnight::Overnight() : Parcels(), mVol(-1), insuranceCostMultiplier(0.25),
-												 rushCostMultiplier(0.75) {
+Overnight::Overnight() : Parcels(), mVol(-1), mInsuranceCostMultiplier(0.25),
+												 mRushCostMultiplier(0.75) {
 
 }
 
@@ -139,7 +139,7 @@ int Overnight::getDaysForDelivery() {
 
 double Overnight::getInsuranceExpense(double currCost) const {
 	double actualInsuranceExpense = 0;
-	actualInsuranceExpense = (currCost * insuranceCostMultiplier); 
+	actualInsuranceExpense = (currCost * mInsuranceCostMultiplier); 
 	return actualInsuranceExpense;
 }
 
@@ -156,6 +156,6 @@ double Overnight::getInsuranceExpense(double currCost) const {
 
 double Overnight::getRushExpense(double currCost) const {
 	double actualRushExpense = 0;
-	actualRushExpense = (currCost * rushCostMultiplier);
+	actualRushExpense = (currCost * mRushCostMultiplier);
 	return actualRushExpense;
 }
