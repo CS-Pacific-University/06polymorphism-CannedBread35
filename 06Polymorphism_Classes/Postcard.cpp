@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Postcard.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/27/2021
+// Date:		   5/2/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Inheritance
@@ -38,7 +38,7 @@ Postcard::Postcard() : Parcels(), mMessage(""), insuranceFlatRate(0.15),
 //
 // Parameters:	rcIn - designated input option
 //
-// Returned:		bool 
+// Returned:		determination of whether or not data was read in
 //***************************************************************************
 
 bool Postcard::read(istream& rcIn) {
@@ -74,7 +74,7 @@ void Postcard::print(ostream& rcOut) {
 //
 // Parameters:	none
 // 
-// Returned:		double - the total running cost for the postcard
+// Returned:		the total running cost for the postcard
 //***************************************************************************
 
 double Postcard::getCost() {
@@ -100,13 +100,14 @@ double Postcard::getCost() {
 //
 // Parameters:	none
 // 
-// Returned:		double - the total running number of days required for
-//                       delivery of a postcard
+// Returned:		the total running number of days required for delivery of a 
+//              postcard
 //***************************************************************************
 
 int Postcard::getDaysForDelivery() {
   const int MILES_PER_DAY_CAN_TRAVEL = 10;
-  const int THRESHOLD = 0;
+  const int ZERO_THRESHOLD = 0;
+  const int ONE_DAY_THRESHOLD = 1;
   int milesToTravel = Parcels::getDistance();
   int daysForDelivery = 0;
   
@@ -114,13 +115,13 @@ int Postcard::getDaysForDelivery() {
     daysForDelivery = 1;
   }
   else {
-    while (milesToTravel > THRESHOLD) {
+    while (milesToTravel > ZERO_THRESHOLD) {
       (milesToTravel -= MILES_PER_DAY_CAN_TRAVEL);
       daysForDelivery++;  
     }
   }
   if (Parcels::getRushTruth()) {
-    if (daysForDelivery > 1) {
+    if (daysForDelivery > ONE_DAY_THRESHOLD) {
       daysForDelivery -= 1;
     }
   }
@@ -135,7 +136,7 @@ int Postcard::getDaysForDelivery() {
 //
 // Parameters:	none
 // 
-// Returned:		double - the insurance's flat rate for the unique parcel
+// Returned:		the insurance's flat rate for the unique parcel
 //***************************************************************************
 
 double Postcard::getInsuranceExpense(double currCost) const {
@@ -150,7 +151,7 @@ double Postcard::getInsuranceExpense(double currCost) const {
 //
 // Parameters:	currCost - the current cost of the unique type of parcel to 
 // 
-// Returned:		double - the rushing expense
+// Returned:		the rushing expense
 //***************************************************************************
 
 double Postcard::getRushExpense(double currCost) const {

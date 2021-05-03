@@ -2,7 +2,7 @@
 //***************************************************************************
 // File name:		Postcard.h
 // Author:			Taylor Isaac
-// Date:				4/28/2021
+// Date:				5/2/2021
 // Class:				CS 250
 // Assignment:  06Polymorphism_Classes
 // Purpose:			Demonstrate the Postcard class
@@ -17,13 +17,13 @@ using namespace std;
 class Postcard : public Parcels {
 	public:
 		Postcard ();
-		virtual bool read(istream&);
-		virtual void print(ostream&);
+		virtual bool read (istream&);
+		virtual void print (ostream&);
 
-		virtual double getCost(); 
-		virtual int getDaysForDelivery();
-		virtual double getInsuranceExpense(double) const;
-		virtual double getRushExpense(double) const;
+		virtual double getCost (); 
+		virtual int getDaysForDelivery ();
+		virtual double getInsuranceExpense (double) const;
+		virtual double getRushExpense (double) const;
 
 	private:
 		string mMessage;

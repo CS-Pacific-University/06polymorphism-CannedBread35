@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Parcels.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/28/2021
+// Date:		   5/2/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Inheritance using a Parcel
@@ -34,8 +34,6 @@ Parcels::Parcels() {
 	mDayMinimumOfTravel = -1;
 	bInsured = false;
 	bRush = false;
-	// insuranceCostOrMultiplier = -1;
-	// rushCostOrMultiplier = -1;
 }
 
 //***************************************************************************
@@ -46,7 +44,7 @@ Parcels::Parcels() {
 //
 // Parameters:	rcIn - designated input option
 //
-// Returned:		bool - determines whether or not data was read in
+// Returned:		determination of whether or not data was read in
 //***************************************************************************
 
 bool Parcels::read(istream& rcIn) {
@@ -71,7 +69,7 @@ bool Parcels::read(istream& rcIn) {
 //***************************************************************************
 
 void Parcels::print(ostream& rcOut) {
-	rcOut << "TID: " << mTrackingNumb << "  From: " << mFromAddress
+	rcOut << "TID: " << mTrackingNumb << "\tFrom: " << mFromAddress
 				<< "\tTo: " << mToAddress;
 	if (bInsured) {
 		rcOut << "\tINSURED\t";
@@ -89,13 +87,13 @@ void Parcels::print(ostream& rcOut) {
 //							to see if any of the TID's in the array of pointers matches 
 //							up with what the user enters in 
 // 
-// Parameters:  index - actual size of array of pointers
+// Parameters:  index							- actual size of array of pointers
 // 
 //							apcArrayOfParcels - the array of pointers passed in
 //							
-//							userTID - passes in the user's inputted initial TID 
+//							userTID						- passes in the user's inputted initial TID 
 // 
-// Returned:    bool - returns a boolean variable if valid TID
+// Returned:    returns a boolean variable if valid TID
 //***************************************************************************
 
 bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
@@ -118,7 +116,7 @@ bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
 // 
 // Parameters:  none
 // 
-// Returned:    bool - returns a boolean variable of insurance
+// Returned:    returns a boolean variable of insurance
 //***************************************************************************
 
 	bool Parcels::getInsuranceTruth() {
@@ -133,8 +131,7 @@ bool Parcels::getValidUserTID(int index, Parcels* apcArrayOfParcels[],
 // 
 // Parameters:  none
 // 
-// Returned:    bool - returns a boolean variable of whether or not its
-//										 rushed
+// Returned:    returns a boolean variable of whether or not its rushed
 //***************************************************************************
 
 bool Parcels::getRushTruth() {

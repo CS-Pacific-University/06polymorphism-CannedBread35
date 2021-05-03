@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Parcels.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/28/2021
+// Date:		   5/2/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Inheritance
@@ -38,7 +38,7 @@ Overnight::Overnight() : Parcels(), mVol(-1), insuranceCostMultiplier(0.25),
 //
 // Parameters:	rcIn - designated input option
 //
-// Returned:		bool 
+// Returned:		the truth of whether or not data was successful in reading in
 //***************************************************************************
 
 bool Overnight::read(istream& rcIn) {
@@ -74,7 +74,7 @@ void Overnight::print(ostream& rcOut) {
 //
 // Parameters:	none
 // 
-// Returned:		double - the total running cost
+// Returned:		the total running cost
 //***************************************************************************
 
 double Overnight::getCost() {
@@ -106,8 +106,7 @@ double Overnight::getCost() {
 //
 // Parameters:	none
 // 
-// Returned:		double - the total running number of days required for
-//                       delivery
+// Returned:		the total running number of days required for delivery
 //***************************************************************************
 
 int Overnight::getDaysForDelivery() {
@@ -135,7 +134,7 @@ int Overnight::getDaysForDelivery() {
 //
 // Parameters:	none
 // 
-// Returned:		double - the insurance's overall rate for the unique parcel
+// Returned:		the insurance's overall rate for the unique parcel
 //***************************************************************************
 
 double Overnight::getInsuranceExpense(double currCost) const {
@@ -152,7 +151,7 @@ double Overnight::getInsuranceExpense(double currCost) const {
 //
 // Parameters:	currCost - the current cost of the unique type of parcel to 
 // 
-// Returned:		double - the rushing expense
+// Returned:		the rushing expense
 //***************************************************************************
 
 double Overnight::getRushExpense(double currCost) const {

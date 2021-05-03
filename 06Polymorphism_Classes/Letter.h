@@ -2,7 +2,7 @@
 //***************************************************************************
 // File name:		Letter.h
 // Author:			Taylor Isaac
-// Date:				4/28/2021
+// Date:				5/2/2021
 // Class:				CS 250
 // Assignment:  046Polymorphism_Classes
 // Purpose:			Demonstrate the Letter class
@@ -17,12 +17,12 @@ class Letter : public Parcels {
 	public:
 		Letter ();
 		virtual bool read (istream&);
-		virtual void print(ostream&);
+		virtual void print (ostream&);
 
-		virtual double getCost();
-		virtual int getDaysForDelivery() ;
-		virtual double getInsuranceExpense(double) const;
-		virtual double getRushExpense(double) const;
+		virtual double getCost ();
+		virtual int getDaysForDelivery () ;
+		virtual double getInsuranceExpense (double) const;
+		virtual double getRushExpense (double) const;
 
 private:
 	double insuranceFlatRate;

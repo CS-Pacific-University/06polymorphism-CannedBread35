@@ -1,7 +1,7 @@
 //***************************************************************************
 // File name:	 Letter.cpp
 // Author:		 Taylor Isaac
-// Date:		   4/28/2021
+// Date:		   5/2/2021
 // Class:		   CS 250
 // Assignment: 06Polymorphism_Classes
 // Purpose:		 Demonstrate Letter and its pertinence to inheritance
@@ -37,7 +37,7 @@ Letter::Letter() : Parcels(), insuranceFlatRate(0.45),
 //
 // Parameters:	rcIn - designated input option
 //
-// Returned:		bool - determines whether or not data was read in
+// Returned:		determines whether or not data was read in
 //***************************************************************************
 
 bool Letter::read(istream& rcIn) {
@@ -72,7 +72,7 @@ void Letter::print(ostream& rcOut) {
 //
 // Parameters:	none
 // 
-// Returned:		double - the total running cost
+// Returned:		the total running cost
 //***************************************************************************
 
 double Letter::getCost() {
@@ -99,13 +99,13 @@ double Letter::getCost() {
 //
 // Parameters:	none
 // 
-// Returned:		double - the total running number of days required for
-//                       delivery
+// Returned:		the total running number of days required for delivery
 //***************************************************************************
 
 int Letter::getDaysForDelivery() {
 	const int MILES_PER_DAY_CAN_TRAVEL = 100;
-	const int THRESHOLD = 0;
+	const int ZERO_THRESHOLD = 0;
+	const int ONE_DAY_THRESHOLD = 1;
 	int milesToTravel = Parcels::getDistance();
 	int daysForDelivery = 0;
 
@@ -113,13 +113,13 @@ int Letter::getDaysForDelivery() {
 		daysForDelivery = 1;
 	}
 	else {
-		while (milesToTravel > THRESHOLD) {
+		while (milesToTravel > ZERO_THRESHOLD) {
 			(milesToTravel -= MILES_PER_DAY_CAN_TRAVEL);
 			daysForDelivery++;
 		}
 	}
 	if (Parcels::getRushTruth()) {
-		if (daysForDelivery > 1) {
+		if (daysForDelivery > ONE_DAY_THRESHOLD) {
 			daysForDelivery -= 1;
 		}
 	}
@@ -134,7 +134,7 @@ int Letter::getDaysForDelivery() {
 //
 // Parameters:	none
 // 
-// Returned:		double - the insurance's flat rate for the unique parcel
+// Returned:		the insurance's flat rate for the unique parcel
 //***************************************************************************
 
 double Letter::getInsuranceExpense(double currCost) const {
@@ -149,7 +149,7 @@ double Letter::getInsuranceExpense(double currCost) const {
 //
 // Parameters:	currCost - the current cost of the unique type of parcel to 
 // 
-// Returned:		double - the rushing expense
+// Returned:		the rushing expense
 //***************************************************************************
 
 double Letter::getRushExpense(double currCost) const {

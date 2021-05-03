@@ -1,10 +1,10 @@
 //***************************************************************************
-// File name:		Source.cpp
+// File name:		main.cpp
 // Author:			Taylor Isaac
-// Date:				4/28/2021
+// Date:				5/2/2021
 // Class:				CS 250
 // Assignment:  06Polymorphism
-// Purpose:			Demonstrate the mail class
+// Purpose:			Demonstrate the parcels class and its derived classes
 //***************************************************************************
 
 #include "Parcels.h"
@@ -23,8 +23,8 @@ const int OPTION_FOUR = 4;
 const int OPTION_FIVE = 5;
 const string INPUT_FILE = "parcels.txt";
 int printOptionMenuAndGetChoice();
-void openFileForRead(ifstream& rInfile);
-void closeFileForRead(ifstream& rInfile);
+void openFileForRead(ifstream& rcInfile);
+void closeFileForRead(ifstream& rcInfile);
 void printAllParcels(int index, Parcels* apcParcelsObjs[]);
 int obtainInitialTID();
 using namespace std;
@@ -46,6 +46,7 @@ int main() {
   const char POSTCARD_SYMBOL = 'P';
   const char LETTER_SYMBOL = 'L';
   const char OVERNIGHT_SYMBOL = 'O';
+  const int NO_PARCELS = 0;
   char parcelEat = '.';
   int index = 0;
   int initialID = -1;
@@ -54,11 +55,12 @@ int main() {
   double eatCost = 0;
   Parcels* apcParcelsObjs[MAX_NUMB_ARRAY] = { nullptr };
   ifstream cInFile;
-
+  
   openFileForRead(cInFile);
-
   cout << "Mail Simulator!\n";
+
   while (cInFile >> parcelEat) {
+
     switch (parcelEat) {
     case POSTCARD_SYMBOL: apcParcelsObjs[index] = new Postcard();
       apcParcelsObjs[index]->read(cInFile);
@@ -75,7 +77,10 @@ int main() {
     default: break;
     }
   }
-
+  if (NO_PARCELS == index) {
+    cout << "File is empty.\n";
+    exit(EXIT_FAILURE);
+  }
   while (OPTION_FIVE != userChoice) {
     userChoice = printOptionMenuAndGetChoice();
     if (OPTION_ONE == userChoice) {
@@ -122,7 +127,7 @@ int main() {
       initialID = obtainInitialTID();
       if (apcParcelsObjs[initialID - 1] != nullptr) {
         bIsValidTID = Parcels::getValidUserTID(index, apcParcelsObjs,
-          initialID);
+                                               initialID);
         if (bIsValidTID) { 
           cout << "Added Rush for $";
           eatCost = (apcParcelsObjs[initialID - 1]->getCost());
@@ -134,7 +139,7 @@ int main() {
       }
     }
   }
-  for (int start = 0; start < MAX_NUMB_ARRAY; start++) {
+  for (int start = 0; start < index; start++) {
     delete (apcParcelsObjs[start]);
   }
   closeFileForRead(cInFile);
@@ -149,8 +154,7 @@ int main() {
 //
 // Parameters:	None
 // 
-// Returned:		int - the returned valid choice as a number displayed from
-//                    menu
+// Returned:		the returned valid choice as a number displayed from menu
 //***************************************************************************
 
 int printOptionMenuAndGetChoice() {
@@ -160,10 +164,8 @@ int printOptionMenuAndGetChoice() {
   do {
     cout << "Choice> ";
     cin >> userChoice;
-  } while (!(OPTION_ONE == userChoice ||
-             OPTION_TWO == userChoice ||
-             OPTION_THREE == userChoice ||
-             OPTION_FOUR == userChoice ||
+  } while (!(OPTION_ONE == userChoice || OPTION_TWO == userChoice ||
+             OPTION_THREE == userChoice || OPTION_FOUR == userChoice ||
              OPTION_FIVE == userChoice));
   return userChoice;
 }
@@ -173,16 +175,15 @@ int printOptionMenuAndGetChoice() {
 //
 // Description:	opens file, checking for proper opening
 //							
-// Parameters:	rInfile - specified input file
+// Parameters:	rcInfile - specified input file
 //              
 // Returned:		None
 //***************************************************************************
 
-void openFileForRead(ifstream& rInfile) {
- // const string INPUT_FILE = "parcels.txt";
-  rInfile.open(INPUT_FILE);
-  if (!rInfile.is_open()) {
-    cout << "Error opening file.";
+void openFileForRead(ifstream& rcInfile) {
+  rcInfile.open(INPUT_FILE);
+  if (!rcInfile.is_open()) {
+    cout << "Error opening file.\n";
     exit(EXIT_FAILURE);
   }
 }
@@ -197,8 +198,8 @@ void openFileForRead(ifstream& rInfile) {
 // Returned:    None
 //***************************************************************************
 
-void closeFileForRead(ifstream& rInfile) {
-  rInfile.close();
+void closeFileForRead(ifstream& rcInfile) {
+  rcInfile.close();
 }
 
 //***************************************************************************
@@ -231,12 +232,12 @@ void printAllParcels(int index, Parcels *apcArrayOfParcels[]) {
 // 
 // Parameters:  None
 //
-// Returned:    int - the user's inputted initial tracking ID number
+// Returned:    the user's inputted initial tracking ID number
 //***************************************************************************
 
 int obtainInitialTID() {
   int initialTID = -1;
   cout << "\nTID> ";
   cin >> initialTID;
-    return initialTID;
+  return initialTID;
 }

@@ -2,7 +2,7 @@
 //***************************************************************************
 // File name:		Overnight.h
 // Author:			Taylor Isaac
-// Date:				4/28/2021
+// Date:				5/2/2021
 // Class:				CS 250
 // Assignment:  06Polymorphism_Classes
 // Purpose:			Demonstrate the Overnight class
@@ -14,16 +14,16 @@ using namespace std;
 
 class Overnight : public Parcels {
 	public:
-		Overnight();
-		int getVol() const { return mVol; }
+		Overnight ();
+		int getVol () const { return mVol; }
 
-		virtual bool read(istream&);
-		virtual void print(ostream&);
+		virtual bool read (istream&);
+		virtual void print (ostream&);
 		
-		virtual double getCost();
-		virtual int getDaysForDelivery();
-		virtual double getInsuranceExpense(double) const;
-		virtual double getRushExpense(double) const;
+		virtual double getCost ();
+		virtual int getDaysForDelivery ();
+		virtual double getInsuranceExpense (double) const;
+		virtual double getRushExpense (double) const;
 	
 	private:
 		int mVol;
